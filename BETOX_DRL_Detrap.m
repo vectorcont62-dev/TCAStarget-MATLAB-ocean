@@ -62,15 +62,11 @@ Vg = 0;
 Vch = 0;
 CTN_slice = 20;
 Rad = setRadius(20e-7, 8e-7, 2e-7, 2e-7, 0.9e-7, 6e-7, 8e-7, 2e-7, CTN_slice); % DRL Spec
-% Rad = setRadius(20e-7, 8e-7, 2.5e-7, 2e-7, 0.9e-7, 6e-7, 8e-7, 2e-7); % DRL Spec
-% Rad = setRadius(20e-7, 8e-7, 3.0e-7, 2e-7, 0.9e-7, 6e-7, 8e-7, 2e-7); % DRL Spec
-% Rad = setRadius(20e-7, 8e-7, 3.5e-7, 2e-7, 0.9e-7, 6e-7, 8e-7, 2e-7); % DRL Spec
-% Rad = setRadius(20e-7, 8e-7, 4.0e-7, 2e-7, 0.9e-7, 6e-7, 8e-7, 2e-7); % DRL Spec
 
 
 % Vol = pi*((Rad.r_tn1)^2-Rad.r_tox1^2); % finding Vt in simple uniform distribution
 % Vol2 = pi*((Rad.r_ctn)^2-Rad.r_tox^2);
-% C1 = 2*pi*Para.e_n/log(Rad.r_tn1/(Rad.r_tox1+0.5*Rad.t_tn1));
+% C1 = 2*pi*Para.e_n/log(Rad.r_tn1/(Rad.r_tox1+0.5*Rad.t_tn1)); %Cylindrical Capacitance: 2pi/e/log(rout/rin)
 % C2 = 2*pi*Para.e_ox/log(Rad.r_tox/Rad.r_tn1);
 % C3 = 2*pi*Para.e_n/log(Rad.r_ctn/Rad.r_tox);
 % C32 = 2*pi*Para.e_n/log(Rad.r_ctn/(Rad.r_tox + 0.5*Rad.t_ctn));

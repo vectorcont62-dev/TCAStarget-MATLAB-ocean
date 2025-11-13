@@ -47,9 +47,6 @@ for i=1:length(r.r)
         Efield(i) = - Ko2/p.e_ox/r.r(i);
 
     elseif (r.r(i)>=r.r_tox && r.r(i)<r.r_CTN(1))
-        % V_instant_CTN(1) = Ko1/p.e_ox*log(r.r_tox1/r.r_0) ...
-        %     + Kn1/p.e_SiON*log(r.r_tn1/r.r_tox1) + q*nt_n1/4/p.e_SiON*(r.r_tn1^2-r.r_tox1^2)...
-        %     + Ko2/p.e_ox*log(r.r_tox/r.r_tn1) + KCTN(1)/p.e_n*log(r.r(i)/r.r_o2) + q*nt_ctn(1)/4/p.e_n*(r.r(i)^2-r.r_o2^2);
         V_instant_CTN(1) = V_instant_o2 + KCTN(1)/p.e_n*log(r.r(i)/r.r_o2) + q*nt_ctn(1)/4/p.e_n*(r.r(i)^2-r.r_o2^2);
         V_c(i) = V_instant_CTN(1);
         Ec(i) = p.PHI_B_SiN-V_c(i);
@@ -66,11 +63,6 @@ for i=1:length(r.r)
 
     elseif (r.r(i)>= r.r_CTN(N) && r.r(i)<r.r_box)
         V_instant_BOX = V_instant_CTN(N) + KBOX/p.e_ox*log(r.r(i)/r.r_CTN(N));
-        % V_instant_BOX= Ko1/p.e_ox*log(r.r_tox1/r.r_0) ...
-        %     + Kn1/p.e_SiON*log(r.r_tn1/r.r_tox1) + q*nt_n1/4/p.e_SiON*(r.r_n1^2-r.r_tox1^2)...
-        %     + Ko2/p.e_ox*log(r.r_tox/r.r_tn1)...
-        %     + KCTN(1)/p.e_n*log(r.r_ctn/r.r_tox) + q*nt_ctn/4/p.e_n*(r.r_ctn^2-r.r_tox^2)...
-        %     + KBOX/p.e_ox*log(r.r(i)/r.r_ctn);
         V_c(i) = V_instant_BOX;
         Ec(i) = p.PHI_B_SiO2 - V_c(i);
         Ev(i) = Ec(i) - p.E_bandgap_SiO2;

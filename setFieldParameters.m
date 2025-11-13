@@ -1,36 +1,6 @@
 function x = setFieldParameters(r, p, V_ch, V_G, nt_tn1, nt_ctn, N)
 q = p.q;
 
-%% original method of solving manually
-% a_alpha = 1/p.e_ox*log(r.r_tox1/r.r_0) + 1/p.e_SiON*log(r.r_tn1/r.r_tox1) + 1/p.e_ox*log(r.r_tox/r.r_tn1) + 1/p.e_n*log(r.r_ctn/r.r_tox) + 1/p.e_ox*log(r.r_box/r.r_ctn);
-% K = (V_G-V_ch) / a_alpha - q*nt_tn1/2/a_alpha*(r.r_tn1^2-r.r_tox1^2)*...
-%      (-r.r_tox1^2/(r.r_tn1^2 - r.r_tox1^2)/p.e_SiON*log(r.r_tn1/r.r_tox1) + 1/2/p.e_SiON + 1/p.e_ox*log(r.r_tox/r.r_tn1)+1/p.e_n*log(r.r_ctn/r.r_tox) + 1/p.e_ox*log(r.r_box/r.r_ctn))...
-%      - q*nt_ctn/2/a_alpha*(r.r_ctn^2-r.r_tox^2)*...
-%      (-r.r_tox^2/(r.r_ctn^2-r.r_tox^2)/p.e_n*log(r.r_ctn/r.r_tox) + 1/2/p.e_n + 1/p.e_ox*log(r.r_box/r.r_ctn));
-% volN1 = pi*(r.r_tn1^2-r.r_tox1^2);
-% CTG = (1/2/pi/p.e_SiON*log(r.r_tn1/(r.r_tox1+r.t_tn1*0.5)) ...
-%     + 1/2/pi/p.e_ox*log(r.r_tox/r.r_tn1) + 1/2/pi/p.e_n*log(r.r_ctn/r.r_tox)...
-%     + 1/2/pi/p.e_ox*log(r.r_box/r.r_ctn))^(-1);
-% % CTG = (1/2/pi/p.e_ox*log(r.r_tox/r.r_tn1) + 1/2/pi/p.e_n*log(r.r_ctn/r.r_tox)...
-% %     + 1/2/pi/p.e_ox*log(r.r_box/r.r_ctn))^(-1);
-% volCTN = pi*(r.r_ctn^2-r.r_tox^2);
-% CNG = (1/2/pi/p.e_n*log(r.r_ctn/(r.r_tox+0.5*r.t_ctn)) + 1/2/pi/p.e_ox*log(r.r_box/r.r_ctn))^(-1);
-% % CNG = (1/2/pi/p.e_ox*log(r.r_box/r.r_ctn))^(-1);
-% % K = 1/a_alpha*(V_G - q*nt_tn1*volN1/CTG - q*nt_ctn*volCTN/CNG);
-% % K = K/5;
-% K1 = K - q*nt_tn1/2*r.r_tox1^2;
-% K2 = K + q*nt_tn1/2*(r.r_tn1^2-r.r_tox1^2);
-% K3 = K + q*nt_tn1/2*(r.r_tn1^2-r.r_tox1^2) - q*nt_ctn/2*r.r_tox^2;
-% K4 = K + q*nt_tn1/2*(r.r_tn1^2-r.r_tox1^2) + q*nt_ctn/2*(r.r_ctn^2-r.r_tox^2);
-
-% dVt = q*nt_tn1/2*(r.r_tn1^2-r.r_tox1^2)*...
-%      (-r.r_tox1^2/(r.r_tn1^2 - r.r_tox1^2)/p.e_SiON*log(r.r_tn1/r.r_tox1) + 1/2/p.e_SiON + 1/p.e_ox*log(r.r_tox/r.r_tn1)+1/p.e_n*log(r.r_ctn/r.r_tox) + 1/p.e_ox*log(r.r_box/r.r_ctn))...
-%      + q*nt_ctn/2*(r.r_ctn^2-r.r_tox^2)*...
-%      (-r.r_tox^2/(r.r_ctn^2-r.r_tox^2)/p.e_n*log(r.r_ctn/r.r_tox) + 1/2/p.e_n + 1/p.e_ox*log(r.r_box/r.r_ctn));
-
-% dVtd = q*nt_tn1/2*(r.r_tn1^2-r.r_tox1^2)*...
-%      (-r.r_tox1^2/(r.r_tn1^2 - r.r_tox1^2)/p.e_SiON*log(r.r_tn1/r.r_tox1) + 1/2/p.e_SiON + 1/p.e_ox*log(r.r_tox/r.r_tn1)+1/p.e_n*log(r.r_ctn/r.r_tox) + 1/p.e_ox*log(r.r_box/r.r_ctn));
-
 %% New method of Solving by simulataneous Equation : x = A\b where Ax = b
 A = zeros(N+4, N+4); % CTN slice with N + Ko1 Kn1 Ko2 KBOX
 b = zeros(N+4,1);

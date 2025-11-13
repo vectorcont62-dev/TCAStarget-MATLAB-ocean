@@ -61,7 +61,8 @@ nt_tn1 = BE_Conc;
 Vg = 0;
 Vch = 0;
 CTN_slice = 20;
-Rad = setRadius(20e-7, 8e-7, 2e-7, 2e-7, 0.9e-7, 6e-7, 8e-7, 2e-7, CTN_slice); % DRL Spec
+Rad = setRadius(20e-7, 8e-7, 2e-7, 2e-7, 0.9e-7, 6e-7, 8e-7, 2e-7, CTN_slice); % DRL Spec BETOX
+Rad = setRadius(20e-7, 8e-7, 5e-7, .01e-7, .01e-7, 6e-7, 8e-7, 2e-7, CTN_slice); % DRL Spec ONO
 
 
 % Vol = pi*((Rad.r_tn1)^2-Rad.r_tox1^2); % finding Vt in simple uniform distribution
@@ -81,7 +82,7 @@ Rad = setRadius(20e-7, 8e-7, 2e-7, 2e-7, 0.9e-7, 6e-7, 8e-7, 2e-7, CTN_slice); %
 % psi_surface = psi_s(Rad, Para, Vth_ini)
 
 nt_ctn = zeros(CTN_slice,1);
-for i = 1:5
+for i = 16:20
     nt_ctn(i) = 4e19;
 end
 

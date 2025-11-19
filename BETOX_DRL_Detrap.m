@@ -82,15 +82,20 @@ Rad = setRadius(20e-7, 8e-7, 5e-7, .01e-7, .01e-7, 6e-7, 8e-7, 2e-7, CTN_slice);
 % psi_surface = psi_s(Rad, Para, Vth_ini)
 
 nt_ctn = zeros(CTN_slice,1);
-for i = 16:20
-    nt_ctn(i) = 4e19;
+for i = 1:5
+    nt_ctn(i) = 3e19;
 end
+nt_ctn(1) = 1e19;
 
-% x = setFieldParameters(Rad, Para, Vch, Vg, nt_tn1, nt_ctn, CTN_slice)
+% Vg = .0912;
+
+[~,Vth] = setFieldParameters(Rad, Para, Vch, Vg, nt_tn1, nt_ctn, CTN_slice)
 
 [E_c0, E_v0, E_field0] = GAA_analysis_Band(Rad, Para, Vch, Vg, nt_tn1, nt_ctn, CTN_slice); % 1us program, Vch = -1.7V
 E_field1 = abs(E_field0);
 Plot_BandDiagram(Rad, E_c0, E_v0, E_field1);
+
+% Vth = nt_to_Vth(Rad, Para, nt_tn1, nt_ctn, CTN_slice)
 
 % figure(2);
 % plot(Et_trap(:,1), Et_trap(:,2));

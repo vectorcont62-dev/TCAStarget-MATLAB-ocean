@@ -1,6 +1,6 @@
 function [Ec, Ev, Efield] = GAA_analysis_Band(r, p, Vch, Vg, nt_n1, nt_ctn, N)
 
-x = setFieldParameters(r, p, Vch, Vg, nt_n1, nt_ctn, N);
+[x, ~] = setFieldParameters(r, p, Vch, Vg, nt_n1, nt_ctn, N);
 Ko1 = x(1);
 Kn1 = x(2);
 Ko2 = x(3);

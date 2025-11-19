@@ -1,7 +1,9 @@
-function x = setFieldParameters(r, p, V_ch, V_G, nt_tn1, nt_ctn, N)
+function [x, Vth] = setFieldParameters(r, p, V_ch, V_G, nt_tn1, nt_ctn, N)
 q = p.q;
 
-%% New method of Solving by simulataneous Equation : x = A\b where Ax = b
+% setFieldParameter solves 1. coefficients of Poisson Equation and 2. Vth value
+
+%% Solving Ko1, Kn1, Ko2, KCTN(1-N), KBOX coeff
 A = zeros(N+4, N+4); % CTN slice with N + Ko1 Kn1 Ko2 KBOX
 b = zeros(N+4,1);
 
@@ -66,5 +68,16 @@ for ii = 2:N
 end
 
 x = A\b;  % Solution for Ax = b >> x = A^-1 b
+
+%% Vth calculation: Vth = -det[Ab0]
+
+b0 = b;
+b0(N+4) = - (q*nt_tn1/4/e_n1*(r_n1^2-r_o1^2)+q*nt_ctn(1)/4/e_CTN*(r_CTN(1)^2-r_o2^2));
+for iii = 2:N
+     b0(N+4) = b0(N+4)-q*nt_ctn(iii)/4/e_CTN*(r_CTN(iii)^2-r_CTN(iii-1)^2);
+end
+Ab0 = A;
+Ab0(:,1) = b0;
+Vth = -det(Ab0);
 
 end

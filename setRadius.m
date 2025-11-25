@@ -18,7 +18,7 @@ r.t_n1 = t_tn1;
 r.r_n1 = r.r_o1 + t_tn1;
 r.r_tn1 = r.r_tox1 + t_tn1;
 
-r.t_tox2 = t_tox2;
+r.t_o2 = t_tox2;
 r.r_tox2 = r.r_tn1 + t_tox2;
 r.r_tox = r.r_tox2;          % top = box, blo
 r.r_o2 = r.r_tox2;

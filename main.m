@@ -16,7 +16,7 @@ Et_res = 100;
 [Et, trap, Conc] = TrapSet(3e19, Et_res, Para.E_bandgap_SiN);
 
 Rad = setRadius(20e-7, 8e-7, 2e-7, 2e-7, 0.9e-7, 6e-7, 8e-7, 2e-7, CTN_slice); % DRL Spec BETOX
-Rad = setRadius(20e-7, 8e-7, 5e-7, .01e-7, .01e-7, 6e-7, 8e-7, 2e-7, CTN_slice); % DRL Spec ONO
+% Rad = setRadius(20e-7, 8e-7, 5e-7, .01e-7, .01e-7, 6e-7, 8e-7, 2e-7, CTN_slice); % DRL Spec ONO
 
 cell_info_initial = cell(Et_res,3+CTN_slice);
 for i = 1:Et_res
@@ -63,9 +63,19 @@ Plot_BandDiagram(Rad, E_c0, E_v0, E_field1);
 
 N = zeros(Et_res,1);
 for i = 1:Et_res
-    N(i) = cell_info_initial{i,5}(3);
+    N(i) = cell_info_initial{i,8}(3);
 end
 figure(2);
 plot(Et, N)
 %% nu-TC relation under eTBT
+for j = 1:3+CTN_slice
+    if(j>=4)
+        for i = 1:Et_res
+            
+        end
+    end
+end
 
+
+[TC_ch, TC_WL] = calc_TC_quantized(Rad, Para, E_c0, E_v0, E_field1, cell_info_initial{40,2})
+[nu_ch, nu_WL] = nu_value(Rad, Para, E_c0, E_v0, E_field1, cell_info_initial{40,2})

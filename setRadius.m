@@ -1,5 +1,14 @@
 function r = setRadius(r_rf, t_si, t_tox1, t_tn1, t_tox2, t_ctn, t_box, t_top_channel, CTN_slice)
 r = struct();
+if (r_rf == 0) r_rf = 0.01e-7; end
+if (t_si == 0) t_si = 0.01e-7; end
+if (t_tox1 == 0) t_tox1 = 0.01e-7; end
+if (t_tn1 == 0) t_tn1 = 0.01e-7; end
+if (t_tox2 == 0) t_tox2 = 0.01e-7; end
+if (t_ctn == 0) t_ctn = 0.01e-7; end
+if (t_box == 0) t_box = 0.01e-7; end
+if (t_top_channel == 0) t_top_channel = 0.01e-7; end
+
 r_0 = r_rf + t_si;
 
 r.r_rf = r_rf;

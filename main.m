@@ -21,7 +21,7 @@ Rad = setRadius(20e-7, 8e-7, 2e-7, 2e-7, 0.9e-7, 6e-7, 8e-7, 2e-7, CTN_slice); %
 cell_info_initial = cell(Et_res,3+CTN_slice);
 for i = 1:Et_res
     for j = 1:3+CTN_slice
-        cell_info_initial{i,j} = zeros(5,1); %radius, trap depth, current conc, nu, TC
+        cell_info_initial{i,j} = zeros(5,1); %radius, trap depth, current conc, e_ch, e_WL
         if(j==1)
             cell_info_initial{i,j}(1) = Rad.r_si+0.5*Rad.t_o1;
         elseif(j==2)
@@ -39,7 +39,7 @@ end
 %% CTN Programmed Poisson Solution & Vth
 nt_tn1 = 0;
 nt_ctn = zeros(CTN_slice,1);
-for i = 1:5
+for i = 1:10
     nt_ctn(i) = 3e19;
 end
 nt_ctn(1) = 1e19;
@@ -66,7 +66,7 @@ for i = 1:Et_res
     N(i) = cell_info_initial{i,8}(3);
 end
 figure(2);
-plot(Et, N)
+plot(Et, N, 'LineWidth', 3)
 %% nu-TC relation under eTBT
 for j = 1:3+CTN_slice
     if(j>=4)
@@ -77,5 +77,5 @@ for j = 1:3+CTN_slice
 end
 
 
-[TC_ch, TC_WL] = calc_TC_quantized(Rad, Para, E_c0, E_v0, E_field1, cell_info_initial{40,2})
-[nu_ch, nu_WL] = nu_value(Rad, Para, E_c0, E_v0, E_field1, cell_info_initial{40,2})
+[TC_ch, TC_WL] = calc_TC_quantized(Rad, Para, E_c0, E_v0, E_field1, cell_info_initial{20,6})
+[nu_ch, nu_WL] = nu_value(Rad, Para, E_c0, E_v0, E_field1, cell_info_initial{20,6})
